@@ -61,5 +61,14 @@
       </footer>
     </div>
   </body>
-  <script src="src/index.js"></script>
+  <script>
+    function runSearch(event) {
+      event.preventDefault();
+      let searchInput = document.querySelector("#search-input");
+      let h1 = document.querySelector("#current-city");
+      h1.innerHTML = searchInput.value;
+    }
+    let searchbox = document.querySelector("#search-form");
+    searchbox.addEventListener("submit", runSearch);
+  </script>
 </html>
