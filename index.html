@@ -33,8 +33,10 @@
           <div>
             <h1 class="current-city" id="current-city">Paris</h1>
             <p class="current-details">
-              <span id="current-date"></span>, moderate rain <br />
-              Humidity: <strong>87%</strong>, Wind: <strong>7.2km/h</strong>
+              <span id="current-date"></span>,
+              <span id="description">moderate rain</span> <br />
+              Humidity: <strong id="humidity">87%</strong>, Wind:
+              <strong id="wind">7.2km/h</strong>
             </p>
           </div>
           <div class="current-temperature">
@@ -66,7 +68,13 @@
     function refreshWeather(response) {
       let currentTemp = response.data.temperature.current;
       let tempNumber = document.querySelector("#current-temperature");
-      tempNumber.innerHTML = math.round(currentTemp);
+      tempNumber.innerHTML = currentTemp;
+      let humidity = document.querySelector("#humidity");
+      let wind = document.querySelector("#wind");
+      let description = document.querySelector("#description");
+      humidity.innerHTML = response.data.temperature.humidity;
+      wind.innerHTML = response.data.wind.speed;
+      description.innerHTML = response.data.condition.description;
     }
     function searchCity(city) {
       // let apiKey = "e3f48160be20f54c0dat8d43o863a815";
@@ -81,7 +89,21 @@
       h1.innerHTML = searchInput.value;
       searchCity(searchInput.value);
     }
+    function updateCurrentDate() {
+      const currentDateElement = document.querySelector("#current-date");
+      const currentDate = new Date();
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const formattedDate = currentDate.toLocaleDateString("en-US", options);
+      currentDateElement.textContent = formattedDate;
+    }
     let searchbox = document.querySelector("#search-form");
     searchbox.addEventListener("submit", runSearch);
+    searchCity("paris");
+    updateCurrentDate();
   </script>
 </html>
