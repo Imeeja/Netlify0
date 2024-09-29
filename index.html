@@ -64,7 +64,9 @@
   </body>
   <script>
     function refreshWeather(response) {
-      console.log(response.data.temperature.current);
+      let currentTemp = response.data.temperature.current;
+      let tempNumber = document.querySelector("#current-temperature");
+      tempNumber.innerHTML = math.round(currentTemp);
     }
     function searchCity(city) {
       // let apiKey = "e3f48160be20f54c0dat8d43o863a815";
