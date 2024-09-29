@@ -63,11 +63,18 @@
     </div>
   </body>
   <script>
+    function searchCity(city) {
+      let apiKey = "e3f48160be20f54c0dat8d43o863a815";
+      let apiUrl =
+        '"https://api.shecodes.io/weather/v1/current?query=${city}&key=e3f48160be20f54c0dat8d43o863a815"';
+      console.log(apiUrl);
+    }
     function runSearch(event) {
       event.preventDefault();
       let searchInput = document.querySelector("#search-input");
       let h1 = document.querySelector("#current-city");
       h1.innerHTML = searchInput.value;
+      searchCity(searchInput.value);
     }
     let searchbox = document.querySelector("#search-form");
     searchbox.addEventListener("submit", runSearch);
