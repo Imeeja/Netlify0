@@ -63,11 +63,14 @@
     </div>
   </body>
   <script>
+    function refreshWeather(response) {
+      console.log(response.data.temperature.current);
+    }
     function searchCity(city) {
-      let apiKey = "e3f48160be20f54c0dat8d43o863a815";
-      let apiUrl =
-        '"https://api.shecodes.io/weather/v1/current?query=${city}&key=e3f48160be20f54c0dat8d43o863a815"';
+      // let apiKey = "e3f48160be20f54c0dat8d43o863a815";
+      let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=e3f48160be20f54c0dat8d43o863a815`;
       console.log(apiUrl);
+      axios.get(apiUrl).then(refreshWeather);
     }
     function runSearch(event) {
       event.preventDefault();
